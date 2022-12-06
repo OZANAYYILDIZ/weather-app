@@ -34,6 +34,7 @@ const selectMaker = () => {
 
 const selectOpt = document.querySelector('#city-options');
 
+
 selectOpt.addEventListener('change', () => {
     console.log(selectOpt.value)
 
@@ -43,9 +44,17 @@ selectOpt.addEventListener('change', () => {
             return response.json();
         })
         .then(function(response) {
+            const displayDiv = document.createElement('div');
+            displayDiv.classList.add('display')
+            displayDiv.textContent = `${selectOpt.value} Temperature : ${Math.floor(response.main.temp - 273.15)} °C
+                                    But it feels like : ${Math.floor(response.main.feels_like - 273.15)} °C
+                                    It is expected to see highest as ${Math.floor(response.main.temp_max - 273.15)} °C and lowest ${Math.floor(response.main.temp_min - 273.15)} °C
+                                    Sky has ${response.weather[0].description}`
+            containerDiv.appendChild(displayDiv)
             console.log('temperature : ' + Math.floor(response.main.temp - 273.15) + ' °C' + ' but it feels like : ' + Math.floor(response.main.feels_like - 273.15) + ' °C');
             console.log('it is expected to see highest as ' + Math.floor(response.main.temp_max - 273.15) + ' °C'  + ' and lowest as ' + Math.floor(response.main.temp_min - 273.15) + ' °C');
             console.log('Sky has ' + response.weather[0].description);
-            console.log('end of the weather fetch')
         })
 })
+
+
