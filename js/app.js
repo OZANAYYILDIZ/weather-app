@@ -43,9 +43,8 @@ selectOpt.addEventListener('change', () => {
             return response.json();
         })
         .then(function(response) {
-            console.log(response);
-            console.log('temperature :' + response.main.temp + ' but it feels like :' + response.main.feels_like);
-            console.log('it is expected to see highest as ' + response.main.temp_max + ' and lowest as ' + response.main.temp_min);
+            console.log('temperature : ' + Math.floor(response.main.temp - 273.15) + ' °C' + ' but it feels like : ' + Math.floor(response.main.feels_like - 273.15) + ' °C');
+            console.log('it is expected to see highest as ' + Math.floor(response.main.temp_max - 273.15) + ' °C'  + ' and lowest as ' + Math.floor(response.main.temp_min - 273.15) + ' °C');
             console.log('Sky has ' + response.weather[0].description);
             console.log('end of the weather fetch')
         })
