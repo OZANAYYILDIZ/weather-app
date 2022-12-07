@@ -26,6 +26,11 @@ formDOM.addEventListener('submit', async (ev) => {
         return response.json();
     })
     .then(function(response) {
+        console.log(response)
+        if(response.cod === '404'){
+            alert('Enter a valid city name');
+            return
+        }
         const display = document.querySelector('.display');
         if(display){
             display.remove();
